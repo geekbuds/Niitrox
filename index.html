@@ -42,7 +42,6 @@
             glow: "glow 4s ease-in-out infinite",
             fadeUp: "fadeUp 1.5s ease-out forwards",
             spinSlow: "spin 8s linear infinite",
-            dots: "dots 1.5s infinite",
           },
           keyframes: {
             float: {
@@ -57,12 +56,6 @@
               "0%": { opacity: 0, transform: "translateY(15px)" },
               "100%": { opacity: 1, transform: "translateY(0)" },
             },
-            dots: {
-              "0%": { content: "''" },
-              "33%": { content: "'.'" },
-              "66%": { content: "'..'" },
-              "100%": { content: "'...'" },
-            },
           },
         },
       },
@@ -70,8 +63,13 @@
   </script>
 
   <style>
-    /* Animated Background */
+    /* Mobile viewport height fix */
+    :root {
+      --vh: 1vh;
+    }
+
     body {
+      height: calc(var(--vh, 1vh) * 100);
       background: linear-gradient(120deg, #2A123F, #3B1D5A, #6D3FA9);
       background-size: 300% 300%;
       animation: gradientMove 10s ease infinite;
@@ -83,7 +81,7 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* Gradient Text */
+    /* Gradient text */
     .text-gradient {
       background: linear-gradient(90deg, #ffffff, #d9b8ff, #ffffff);
       background-size: 200%;
@@ -107,7 +105,7 @@
   </style>
 </head>
 
-<body class="font-primary text-white h-screen w-screen overflow-hidden relative">
+<body class="font-primary text-white w-screen overflow-hidden relative">
 
   <!-- ================= LOADER ================= -->
   <div id="loader" class="fixed inset-0 z-50 flex items-center justify-center bg-niitroxDark">
@@ -117,14 +115,13 @@
         <div class="absolute inset-3 border border-white rounded-full animate-spinSlow"></div>
         <div class="absolute inset-6 bg-white rounded-full animate-pulse"></div>
       </div>
-
       <p class="text-xs tracking-[0.3em] text-white/70 uppercase">
         Initializing Science<span id="dots"></span>
       </p>
     </div>
   </div>
 
-  <!-- Floating Molecules -->
+  <!-- Floating molecules -->
   <div class="absolute inset-0 pointer-events-none">
     <span class="absolute top-20 left-10 w-24 h-24 bg-white/10 rounded-full blur-xl animate-float"></span>
     <span class="absolute bottom-32 right-16 w-32 h-32 bg-white/10 rounded-full blur-2xl animate-float"></span>
@@ -132,7 +129,11 @@
   </div>
 
   <!-- ================= MAIN ================= -->
-  <main id="content" class="relative z-10 h-full w-full flex flex-col items-center justify-between px-6 py-12 opacity-0 animate-fadeUp">
+  <main id="content"
+    class="relative z-10 w-full flex flex-col items-center justify-between px-6
+           pt-10 pb-[calc(env(safe-area-inset-bottom)+28px)]
+           opacity-0 animate-fadeUp"
+    style="height: calc(var(--vh, 1vh) * 100);">
 
     <!-- BRAND -->
     <div class="text-center">
@@ -166,21 +167,32 @@
         class="w-12 h-12 rounded-full border border-white/40 flex items-center justify-center hover:bg-white hover:text-niitrox transition">
         <i class="fab fa-instagram"></i>
       </a>
-      <p class="text-[10px] opacity-50 tracking-widest">© 2026 NIITROX SCIENCE</p>
+      <p class="text-[10px] opacity-50 tracking-widest">
+        © 2026 NIITROX SCIENCE
+      </p>
     </div>
 
   </main>
 
-  <!-- Script -->
+  <!-- ================= SCRIPT ================= -->
   <script>
+    // Fix mobile viewport height
+    function setVH() {
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+    setVH();
+    window.addEventListener('resize', setVH);
+
+    // Loader dots animation
     const dots = document.getElementById("dots");
     let count = 0;
-
     setInterval(() => {
       dots.textContent = ".".repeat(count % 4);
       count++;
     }, 400);
 
+    // Loader transition
     setTimeout(() => {
       document.getElementById("loader").classList.add("fade-out");
       document.getElementById("content").classList.remove("opacity-0");
