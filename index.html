@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Basic Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Niitrox Science – Coming Soon</title>
+  <meta name="description" content="Niitrox Science — Clinical skin, hair & health science. No myths. Just molecules. Coming soon." />
+  <meta name="theme-color" content="#3B1D5A" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Niitrox Science – Coming Soon" />
+  <meta property="og:description" content="Clinical skin, hair & health science. Science that’s proven. Dermatologist tested." />
+  <meta property="og:type" content="website" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            primary: ['Inter', 'sans-serif'],
+            accent: ['Space Grotesk', 'sans-serif'],
+          },
+          colors: {
+            niitroxDark: "#2A123F",
+            niitrox: "#3B1D5A",
+            niitroxLight: "#6D3FA9",
+          },
+          animation: {
+            float: "float 8s ease-in-out infinite",
+            glow: "glow 4s ease-in-out infinite",
+            fadeUp: "fadeUp 1.5s ease-out forwards",
+            spinSlow: "spin 8s linear infinite",
+            dots: "dots 1.5s infinite",
+          },
+          keyframes: {
+            float: {
+              "0%,100%": { transform: "translateY(0)" },
+              "50%": { transform: "translateY(-20px)" },
+            },
+            glow: {
+              "0%,100%": { opacity: 0.4 },
+              "50%": { opacity: 0.8 },
+            },
+            fadeUp: {
+              "0%": { opacity: 0, transform: "translateY(15px)" },
+              "100%": { opacity: 1, transform: "translateY(0)" },
+            },
+            dots: {
+              "0%": { content: "''" },
+              "33%": { content: "'.'" },
+              "66%": { content: "'..'" },
+              "100%": { content: "'...'" },
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* Animated Background */
+    body {
+      background: linear-gradient(120deg, #2A123F, #3B1D5A, #6D3FA9);
+      background-size: 300% 300%;
+      animation: gradientMove 10s ease infinite;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Gradient Text */
+    .text-gradient {
+      background: linear-gradient(90deg, #ffffff, #d9b8ff, #ffffff);
+      background-size: 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: textShine 4s ease infinite;
+    }
+
+    @keyframes textShine {
+      0% { background-position: 0%; }
+      50% { background-position: 100%; }
+      100% { background-position: 0%; }
+    }
+
+    /* Loader fade */
+    .fade-out {
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body class="font-primary text-white h-screen w-screen overflow-hidden relative">
+
+  <!-- ================= LOADER ================= -->
+  <div id="loader" class="fixed inset-0 z-50 flex items-center justify-center bg-niitroxDark">
+    <div class="text-center">
+      <div class="relative w-24 h-24 mx-auto mb-6">
+        <div class="absolute inset-0 border border-white/30 rounded-full"></div>
+        <div class="absolute inset-3 border border-white rounded-full animate-spinSlow"></div>
+        <div class="absolute inset-6 bg-white rounded-full animate-pulse"></div>
+      </div>
+
+      <p class="text-xs tracking-[0.3em] text-white/70 uppercase">
+        Initializing Science<span id="dots"></span>
+      </p>
+    </div>
+  </div>
+
+  <!-- Floating Molecules -->
+  <div class="absolute inset-0 pointer-events-none">
+    <span class="absolute top-20 left-10 w-24 h-24 bg-white/10 rounded-full blur-xl animate-float"></span>
+    <span class="absolute bottom-32 right-16 w-32 h-32 bg-white/10 rounded-full blur-2xl animate-float"></span>
+    <span class="absolute top-1/2 left-1/2 w-40 h-40 bg-white/5 rounded-full blur-3xl animate-glow"></span>
+  </div>
+
+  <!-- ================= MAIN ================= -->
+  <main id="content" class="relative z-10 h-full w-full flex flex-col items-center justify-between px-6 py-12 opacity-0 animate-fadeUp">
+
+    <!-- BRAND -->
+    <div class="text-center">
+      <div class="w-20 h-20 mx-auto rounded-full bg-white/10 backdrop-blur flex items-center justify-center mb-4 shadow-lg">
+        <span class="text-xl font-accent tracking-wide">NX</span>
+      </div>
+      <h1 class="text-2xl font-accent tracking-widest">NIITROX SCIENCE</h1>
+      <p class="text-xs text-white/70 mt-2 tracking-wide">No myths. Just molecules.</p>
+    </div>
+
+    <!-- CENTER -->
+    <div class="text-center max-w-xl">
+      <h2 class="text-4xl md:text-5xl font-accent font-semibold text-gradient mb-4">
+        Coming Soon
+      </h2>
+
+      <p class="text-white/85 leading-relaxed text-sm md:text-base tracking-wide">
+        Clinical skin, hair & health science.<br />
+        Proven formulas. Dermatologist tested.<br />
+        Built on consistency - not promises.
+      </p>
+
+      <div class="flex justify-center mt-6">
+        <span class="w-2 h-2 bg-white rounded-full animate-ping"></span>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="flex flex-col items-center gap-4">
+      <a href="https://www.instagram.com/niitroxscience" target="_blank"
+        class="w-12 h-12 rounded-full border border-white/40 flex items-center justify-center hover:bg-white hover:text-niitrox transition">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <p class="text-[10px] opacity-50 tracking-widest">© 2026 NIITROX SCIENCE</p>
+    </div>
+
+  </main>
+
+  <!-- Script -->
+  <script>
+    const dots = document.getElementById("dots");
+    let count = 0;
+
+    setInterval(() => {
+      dots.textContent = ".".repeat(count % 4);
+      count++;
+    }, 400);
+
+    setTimeout(() => {
+      document.getElementById("loader").classList.add("fade-out");
+      document.getElementById("content").classList.remove("opacity-0");
+    }, 2400);
+  </script>
+
+</body>
+</html>
